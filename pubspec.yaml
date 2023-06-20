@@ -50,6 +50,14 @@ dev_dependencies:
   google_fonts: ^4.0.3
   cached_network_image: ^3.2.3
   flutter_feather_icons: ^2.0.0+1
+  animated_text_kit: ^4.2.2
+  in_app_review: ^2.0.6
+  flutter_scrolling_fab_animated: ^0.1.4
+  flutter_typeahead: ^4.0.0
+  carousel_slider: ^4.2.1
+  flutter_staggered_grid_view: ^0.6.2
+  transparent_image: ^2.0.1
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -64,6 +72,7 @@ flutter:
 
   assets:
     - assets/images/logoWhite.png
+    - assets/images/HeroSection.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

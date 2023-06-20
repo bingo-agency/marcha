@@ -1,6 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:marcha/views/landingScreen/landingPage.dart';
+import '../../state/DataBase.dart';
 import 'package:marcha/views/home/home.dart';
 
 class Splash extends StatelessWidget {
@@ -12,7 +14,7 @@ class Splash extends StatelessWidget {
       const Duration(seconds: 2),
       () => Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (BuildContext context) => const HomeScreen(),
+          builder: (BuildContext context) => LandingPage(),
         ),
       ),
     );
