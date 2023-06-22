@@ -61,14 +61,14 @@ categoryCard(index) {
             BoxShadow(
               color: Color.fromARGB(154, 98, 89, 89),
               blurRadius: 5,
-              offset: Offset(0.1, 0.1),
+              offset: Offset(0.0, 0.0),
             ),
           ],
-          color: Colors.grey[300],
+          color: Colors.grey[100],
           borderRadius:
               const BorderRadius.only(topRight: Radius.circular(25.0)),
         ),
-        margin: const EdgeInsets.only(right: 10.0, top: 2.0, bottom: 2.0),
+        margin: const EdgeInsets.only(right: 15.0, top: 2.0, bottom: 2.0),
         width: 100,
         height: 100,
       ),

@@ -17,13 +17,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
-          backgroundColor: Color(0xFF90CB25),
+          backgroundColor: Color(0xFF4CAF4F),
           systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: Color(0xFF90CB25),
+            statusBarColor: Color(0xFF4CAF4F),
           ),
         ),
         useMaterial3: true,
-        primaryColor: const Color(0xFF90CB25),
+        primaryColor: const Color(0xFF4CAF4F),
         secondaryHeaderColor: const Color(0xFF4d4949),
         backgroundColor: const Color(0xFFEEEEEE),
         textTheme: GoogleFonts.poppinsTextTheme(
@@ -35,8 +35,8 @@ class MyApp extends StatelessWidget {
         ),
         primaryTextTheme: GoogleFonts.poppinsTextTheme(),
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF90CB25),
-          primary: const Color(0xFF90CB25), //<-- SEE HERE
+          seedColor: const Color(0xFF4CAF4F),
+          primary: const Color(0xFF4CAF4F), //<-- SEE HERE
         ).copyWith(background: const Color(0xFFF5F6F6)),
       ),
       initialBinding: BindingsBuilder(() {

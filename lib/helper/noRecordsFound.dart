@@ -14,7 +14,7 @@ noRecordsFound(context, msg) {
       const SizedBox(height: 10),
       Text(
         msg,
-        style: GoogleFonts.ubuntu(
+        style: GoogleFonts.poppins(
           fontSize: 20,
           color: Theme.of(context).primaryColor,
         ),
