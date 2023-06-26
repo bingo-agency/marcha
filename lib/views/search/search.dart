@@ -8,6 +8,9 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Show searchbar'),
+      ),
       body: Center(
         child: noRecordsFound(context, 'No Search records saved.'),
       ),

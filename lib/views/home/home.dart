@@ -1,94 +1,100 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:marcha/views/home/drawer/myDrawer.dart';
 import 'package:marcha/views/home/widgets/customAppBar.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import '../../state/DataBase.dart';
 import 'widgets/categoriesRow.dart';
+import 'widgets/city.dart';
 import 'widgets/imageSlider.dart';
 import 'widgets/recentProducts.dart';
+import 'package:flutter_scrolling_fab_animated/flutter_scrolling_fab_animated.dart';
+
+import 'widgets/topSellers.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+    ScrollController scrollController = ScrollController();
     return Scaffold(
+      // drawer: const MyDrawer(),
       body: CustomScrollView(
+        controller: scrollController,
         slivers: <Widget>[
           //2
           SliverAppBar(
-            expandedHeight: 300.0,
+            expandedHeight: 220.0,
             flexibleSpace: const FlexibleSpaceBar(
-              background: Image(
-                fit: BoxFit.cover,
-                alignment: Alignment.topLeft,
-                image: AssetImage(
-                  "assets/images/HeroSection.png",
-                ),
-              ),
+              background: ImageSlider(),
+
+              //     Image(
+              //   fit: BoxFit.cover,
+              //   alignment: Alignment.topLeft,
+              //   image: AssetImage(
+              //     "assets/images/HeroSection.png",
+              //   ),
+              // ),
             ),
             pinned: true,
             snap: true,
             floating: true,
             centerTitle: false,
-            actions: [
-              InkWell(
-                onTap: () {
-                  //check logged in user.
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: CircleAvatar(
-                    radius: 30.0,
-                    backgroundColor: Theme.of(context).primaryColor,
-                    child: Icon(
-                      FeatherIcons.user,
-                      size: 20.0,
-                      color: Theme.of(context).backgroundColor,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-            toolbarHeight: 100.0,
-            leading: InkWell(
-              onTap: () {
-                //check logged in user.
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: CircleAvatar(
-                  radius: 30.0,
-                  backgroundColor: const Color.fromARGB(153, 139, 195, 74),
-                  child: Icon(
-                    FeatherIcons.alignLeft,
-                    size: 20.0,
-                    weight: 100.0,
-                    color: Theme.of(context).backgroundColor,
-                  ),
-                ),
-              ),
-            ),
+            // actions: [
+            //   InkWell(
+            //     onTap: () {
+            //       //check logged in user.
+            //     },
+            //     child: Padding(
+            //       padding: const EdgeInsets.only(right: 8.0),
+            //       child: CircleAvatar(
+            //         radius: 30.0,
+            //         backgroundColor: Theme.of(context).primaryColor,
+            //         child: Icon(
+            //           FeatherIcons.user,
+            //           size: 20.0,
+            //           color: Theme.of(context).backgroundColor,
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ],
+            toolbarHeight: 115.0,
+            // leading: GestureDetector(
+            //   onTap: () {
+            //     //check logged in user.
+            //   },
+            //   child: Padding(
+            //     padding: const EdgeInsets.only(left: 8.0),
+            //     child: CircleAvatar(
+            //       radius: 30.0,
+            //       backgroundColor: const Color.fromARGB(153, 139, 195, 74),
+            //       child: Icon(
+            //         FeatherIcons.alignLeft,
+            //         size: 20.0,
+            //         weight: 100.0,
+            //         color: Theme.of(context).backgroundColor,
+            //       ),
+            //     ),
+            //   ),
+            // ),
             bottom: customAppBar(context),
           ),
           //3
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (_, int index) {
+                // scrollController: scrollController,
+                // controller: scrollController,
                 return const Column(
                   children: [
-                    ImageSlider(),
+                    // ImageSlider(),
                     CategoriesRow(),
                     RecentProducts(),
-                    Divider(),
-                    Text('Search by city ? horizontal bar.'),
-                    Divider(),
-                    Text('Products for you ... horizontal bar.'),
-                    Divider(),
-                    Text('Products near you.'),
-                    Divider(),
-                    Text('Assign someone to write the products API'),
-                    Divider(),
+                    City(),
+                    TopSellers(),
                   ],
                 );
               },
@@ -97,52 +103,41 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Get.find<DataBase>().incrementCounter();
+      floatingActionButton: ScrollingFabAnimated(
+        icon: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+        text: const Text(
+          'Add ',
+          style: TextStyle(color: Colors.white, fontSize: 16.0),
+        ),
+        onPress: () async {
+          print('add was hit');
+          // if (dbclass.id == "") {
+          //   // print(dbclass.getEmail());
+          //   Navigator.of(context).push(
+          //     MaterialPageRoute(
+          //       builder: (BuildContext context) => const Login(),
+          //     ),
+          //   );
+          // } else {
+          //   // print(dbclass.email);
+          //   Navigator.of(context).push(
+          //     MaterialPageRoute(
+          //       builder: (BuildContext context) =>
+          //           AddNewProperty(id: dbclass.id),
+          //     ),
+          //   );
+          // }
         },
-        child: const Icon(Icons.add),
+        scrollController: scrollController,
+        animateIcon: true,
+        // limitIndicator: 1.0,
+        curve: Curves.easeInOut,
+        inverted: false,
+        radius: 10.0,
       ),
-
-      // Container(
-      //   decoration: const BoxDecoration(
-      //     color: Colors.white,
-      //     borderRadius: BorderRadius.only(
-      //       topLeft: Radius.circular(30.0),
-      //       topRight: Radius.circular(30.0),
-      //     ),
-      //   ),
-      //   child: BottomNavigationBar(
-      //     items: const <BottomNavigationBarItem>[
-      //       BottomNavigationBarItem(
-      //         icon: Icon(FeatherIcons.home),
-      //         label: 'Home',
-      //       ),
-      //       BottomNavigationBarItem(
-      //         icon: Icon(FeatherIcons.search),
-      //         label: 'Search',
-      //       ),
-      //       BottomNavigationBarItem(
-      //         icon: Icon(FeatherIcons.list),
-      //         label: 'My Ads',
-      //       ),
-      //       BottomNavigationBarItem(
-      //         icon: Icon(FeatherIcons.bookmark),
-      //         label: 'Saved Ads',
-      //       ),
-      //       BottomNavigationBarItem(
-      //         icon: Icon(FeatherIcons.user),
-      //         label: 'Profile',
-      //       ),
-      //     ],
-      //     // currentIndex: Get.find<DataBase>().selectedIndex as,
-      //     selectedItemColor: Theme.of(context).primaryColor,
-      //     // onTap: (index) => Get.find<DataBase>().selectedIndex = index as RxInt,
-      //     onTap: (index) {
-      //       // Get.find<DataBase>().selectedIndex = index as RxInt;
-      //     },
-      //   ),
-      // ),
     );
   }
 }

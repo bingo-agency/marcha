@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:marcha/helper/imageList.dart';
+import 'package:marcha/views/listing/listing.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -35,12 +36,21 @@ class RecentProducts extends StatelessWidget {
                       fontSize: 22.0,
                       fontWeight: FontWeight.bold),
                 ),
-                Text(
-                  'View All',
-                  style: TextStyle(
-                      color: Theme.of(context).disabledColor,
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.bold),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => Listing(curl: '*'),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    'View All',
+                    style: TextStyle(
+                        color: Theme.of(context).disabledColor,
+                        fontSize: 12.0,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
               ],
             ),
@@ -57,15 +67,6 @@ class RecentProducts extends StatelessWidget {
                   mainAxisSpacing: 4,
                   crossAxisSpacing: 4,
                   itemBuilder: (context, index) {
-                    // print(index);
-                    // print(controller.products[index]['thumbnail']);
-                    // var allProducts = controller.products[index];
-                    // return const Column(
-                    //   children: [
-                    //     Text('index : '),
-                    //     // Text('controller.products is  : ${controller.products}')
-                    //   ],
-                    // );
                     return Tile(
                       title: controller.products[index]['title'],
                       price: controller.products[index]['price'],
@@ -113,98 +114,7 @@ class Tile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 5.0,
-      child:
-
-          // Container(
-          //   // margin: const EdgeInsets.only(right: 10),
-          //   // width: 350,
-          //   padding: const EdgeInsets.all(5),
-          //   decoration: BoxDecoration(
-          //     color: Colors.white,
-          //     borderRadius: BorderRadius.circular(8),
-          //   ),
-          //   child: Stack(
-          //     children: [
-          //       CachedNetworkImage(
-          //         placeholder: (context, url) =>
-          //             const Center(child: CircularProgressIndicator()),
-          //         errorWidget: (context, url, error) => const Icon(Icons.error),
-          //         imageUrl: thumbnail,
-          //         fit: BoxFit.cover,
-          //         // width: 350,
-          //         // height: 300,
-          //       ),
-          //       Positioned(
-          //         right: 15,
-          //         top: 15,
-          //         child: Card(
-          //           color: Theme.of(context).primaryColor,
-          //           child: const Padding(
-          //             padding: EdgeInsets.all(7.0),
-          //             child: Text(
-          //               'Featured',
-          //               // style: GoogleFonts.ubuntu(
-          //               //     fontWeight: FontWeight.bold,
-          //               //     color: Theme.of(context).colorScheme.background),
-          //             ),
-          //           ),
-          //         ),
-          //       ),
-          //       Positioned(
-          //         bottom: 0,
-          //         left: 0,
-          //         right: 0,
-          //         child: Container(
-          //           color: Colors.white54,
-          //           padding: const EdgeInsets.all(10),
-          //           child: Row(
-          //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //             children: [
-          //               Flexible(
-          //                 child: Column(
-          //                   crossAxisAlignment: CrossAxisAlignment.start,
-          //                   children: [
-          //                     Text(
-          //                       title,
-          //                       // style: GoogleFonts.ubuntu(
-          //                       //     fontSize: 16.0,
-          //                       //     fontWeight: FontWeight.bold,
-          //                       //     color: Theme.of(context).secondaryHeaderColor),
-          //                     ),
-          //                     const SizedBox(
-          //                       height: 5,
-          //                     ),
-          //                     const Text(
-          //                       'map.address',
-          //                       // style: GoogleFonts.ubuntu(
-          //                       //     fontSize: 12.0,
-          //                       //     fontWeight: FontWeight.bold,
-          //                       //     color: Theme.of(context).secondaryHeaderColor),
-          //                     ),
-          //                   ],
-          //                 ),
-          //               ),
-          //               const Card(
-          //                 child: Padding(
-          //                   padding: EdgeInsets.all(7.0),
-          //                   child: Text(
-          //                     ' PKR',
-          //                     // style: GoogleFonts.poppins(
-          //                     //     // fontSize: 13.0,
-          //                     //     fontWeight: FontWeight.bold,
-          //                     //     color: Theme.of(context).primaryColor),
-          //                   ),
-          //                 ),
-          //               ),
-          //             ],
-          //           ),
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
-
-          Container(
+      child: Container(
         decoration: BoxDecoration(
           color: Colors.grey[300],
           borderRadius: BorderRadius.circular(8),

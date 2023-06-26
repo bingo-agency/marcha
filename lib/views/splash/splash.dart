@@ -21,10 +21,21 @@ class Splash extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       body: const Center(
-        child: Image(
-          image: AssetImage(
-            "assets/images/logoWhite.png",
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Text('مارڇه', style: TextStyle(color: Colors.white, fontSize: 48)),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            Image(
+              height: 150,
+              width: 150,
+              image: AssetImage(
+                "assets/images/playstore.png",
+              ),
+            ),
+          ],
         ),
       ),
     );

@@ -8,6 +8,9 @@ class MyAds extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('My Posted Ads'),
+      ),
       body: Center(
         child: noRecordsFound(context, 'No Search records saved.'),
       ),
