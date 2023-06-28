@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:marcha/state/DataBase.dart';
+import 'package:get/get.dart';
+import 'package:marcha/views/widgets/categoriesLoading.dart';
 
 import '../../../helper/categoriesHelper.dart';
 
@@ -25,12 +28,17 @@ class CategoriesRow extends StatelessWidget {
                       fontSize: 22.0,
                       fontWeight: FontWeight.bold),
                 ),
-                Text(
-                  'View All',
-                  style: TextStyle(
-                      color: Theme.of(context).disabledColor,
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.bold),
+                GestureDetector(
+                  onTap: () {
+                    print('View all categories.Expanded list.');
+                  },
+                  child: Text(
+                    'View All',
+                    style: TextStyle(
+                        color: Theme.of(context).disabledColor,
+                        fontSize: 12.0,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
               ],
             ),
@@ -38,13 +46,21 @@ class CategoriesRow extends StatelessWidget {
           Container(
             padding: const EdgeInsets.only(top: 10),
             height: 110,
-            child: ListView.builder(
-              itemCount: CategoriesHelper.categories.length,
-              itemBuilder: (context, index) {
-                return categoryCard(index);
-              },
-              scrollDirection: Axis.horizontal,
-            ),
+            child: GetBuilder<DataBase>(
+                init: DataBase(),
+                builder: (controller) {
+                  return (controller.categories.isEmpty)
+                      ? const CategoriesLoading()
+                      : ListView.builder(
+                          itemCount: controller.categories.length,
+                          itemBuilder: (context, index) {
+                            Map<String, dynamic> singleCat = CategoriesHelper
+                                .categories['categories'][index];
+                            return categoryCard(singleCat);
+                          },
+                          scrollDirection: Axis.horizontal,
+                        );
+                }),
           ),
         ],
       ),
@@ -73,7 +89,7 @@ categoryCard(index) {
         height: 100,
       ),
       CachedNetworkImage(
-        imageUrl: CategoriesHelper.categories[index],
+        imageUrl: index['imageUrl'],
         fit: BoxFit.cover,
         width: 100,
         height: 100,

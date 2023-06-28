@@ -61,7 +61,7 @@ customAppBar(context) {
           );
         },
         child: SizedBox(
-          height: 50.0,
+          height: 52.0,
           // width: MediaQuery.of(context).size.width * 2,
           child: ListTile(
             leading: Icon(FeatherIcons.search,

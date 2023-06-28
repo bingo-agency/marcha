@@ -17,7 +17,10 @@ class DataBase extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    fetchCategories();
     fetchProducts();
+    fetchTopSellers();
+    // fetchCities();
   }
 
   @override
@@ -42,40 +45,74 @@ class DataBase extends GetxController {
     update();
   }
 
-  Product? product;
   List<dynamic> _products = [];
-  // Map<String, dynamic> _products = {};
-
-  // void addProduct(Product product) {
-  //   _products.add(product);
-  // }
   List<dynamic> get products {
     return _products;
   }
-
-  // Map<String, dynamic> get products {
-  //   return _products;
-  // }
 
   bool isLoading = false;
   void fetchProducts() async {
     isLoading = true;
     try {
-      final response =
-          await http.get(Uri.parse('https://dummyjson.com/products'));
+      final response = await http.get(Uri.parse(
+          'https://bingo-agency.com/marcha.com/api/homeProducts.php'));
       if (response.statusCode == 200) {
         final Map<String, dynamic> jsonMap = jsonDecode(response.body);
-        final List<dynamic> jsonList = jsonMap['products'];
+        final List<dynamic> jsonList = jsonMap['homeProducts'];
         print(jsonList.length);
-        // _products = jsonList.map((json) => Product.fromJson(json)).toList();
-
         _products = jsonList;
         isLoading = false;
         update();
+      } else {
+        throw Exception('Failed to fetch products: ${response.statusCode}');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
 
-        // final List<Product> productList =
-        //     jsonList.map((json) => Product.fromJson(json)).toList();
-        // Do something with the productList
+  List<dynamic> _categories = [];
+  List<dynamic> get categories {
+    return _categories;
+  }
+
+  void fetchCategories() async {
+    isLoading = true;
+    try {
+      final response = await http.get(
+          Uri.parse('https://bingo-agency.com/marcha.com/api/categories.php'));
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> jsonMap = jsonDecode(response.body);
+        final List<dynamic> jsonList = jsonMap['categories'];
+        print(jsonList.length);
+        _categories = jsonList;
+        isLoading = false;
+        update();
+      } else {
+        throw Exception('Failed to fetch products: ${response.statusCode}');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  List<dynamic> _topSellers = [];
+  List<dynamic> get topSellers {
+    return _topSellers;
+  }
+
+  void fetchTopSellers() async {
+    isLoading = true;
+    try {
+      final response = await http.get(
+          Uri.parse('https://bingo-agency.com/marcha.com/api/topSellers.php'));
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> jsonMap = jsonDecode(response.body);
+        final List<dynamic> jsonList = jsonMap['topSellers'];
+        print(jsonList.length);
+        _topSellers = jsonList;
+        isLoading = false;
+        update();
       } else {
         throw Exception('Failed to fetch products: ${response.statusCode}');
       }

@@ -29,12 +29,17 @@ class City extends StatelessWidget {
                       fontSize: 22.0,
                       fontWeight: FontWeight.bold),
                 ),
-                Text(
-                  'View All',
-                  style: TextStyle(
-                      color: Theme.of(context).disabledColor,
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.bold),
+                GestureDetector(
+                  onTap: () {
+                    print('List of all cities.');
+                  },
+                  child: Text(
+                    'View All',
+                    style: TextStyle(
+                        color: Theme.of(context).disabledColor,
+                        fontSize: 12.0,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
               ],
             ),

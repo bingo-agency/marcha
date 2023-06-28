@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:marcha/views/widgets/bannerLoading.dart';
 
 class ImageSlider extends StatelessWidget {
   const ImageSlider({Key? key}) : super(key: key);
@@ -26,6 +27,7 @@ class ImageSlider extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(0.0),
                 child: CachedNetworkImage(
+                  placeholder: (context, url) => const BannerLoading(),
                   imageUrl:
                       'https://i.pinimg.com/originals/c3/ce/38/c3ce38d46de6a4f69e0a1fc8a227441d.jpg',
                   fit: BoxFit.fitWidth,
@@ -51,6 +53,7 @@ class ImageSlider extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(0.0),
                 child: CachedNetworkImage(
+                  placeholder: (context, url) => const BannerLoading(),
                   imageUrl:
                       'https://www.sliderrevolution.com/wp-content/uploads/2022/05/salesslider.jpg',
                   fit: BoxFit.fitWidth,
@@ -76,6 +79,7 @@ class ImageSlider extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(0.0),
                 child: CachedNetworkImage(
+                  placeholder: (context, url) => const BannerLoading(),
                   imageUrl:
                       'https://cdn5.f-cdn.com/contestentries/1399898/7003193/5b80a7ae8f6eb_thumb900.jpg',
                   fit: BoxFit.fitWidth,
@@ -101,6 +105,7 @@ class ImageSlider extends StatelessWidget {
               child: Padding(
                   padding: const EdgeInsets.all(0.0),
                   child: CachedNetworkImage(
+                    placeholder: (context, url) => const BannerLoading(),
                     imageUrl:
                         'https://www.sliderrevolution.com/wp-content/uploads/2021/09/sliderrevolution-blog-image-1.gif',
                     fit: BoxFit.fitWidth,

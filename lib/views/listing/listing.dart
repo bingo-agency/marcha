@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:marcha/helper/imageList.dart';
+import 'package:marcha/views/widgets/productsLoading.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -33,60 +34,55 @@ class Listing extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Products',
-                          style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                              fontSize: 22.0,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          'View All',
-                          style: TextStyle(
-                              color: Theme.of(context).disabledColor,
-                              fontSize: 12.0,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  ),
+                  // Align(
+                  //   alignment: Alignment.topLeft,
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: [
+                  //       Text(
+                  //         'Products',
+                  //         style: TextStyle(
+                  //             color: Theme.of(context).primaryColor,
+                  //             fontSize: 22.0,
+                  //             fontWeight: FontWeight.bold),
+                  //       ),
+                  //       Text(
+                  //         'View All',
+                  //         style: TextStyle(
+                  //             color: Theme.of(context).disabledColor,
+                  //             fontSize: 12.0,
+                  //             fontWeight: FontWeight.bold),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
                   GetBuilder<DataBase>(
                       init: DataBase(),
                       builder: (controller) {
-                        return MasonryGridView.count(
-                          itemCount: controller.products.length,
-                          physics: const NeverScrollableScrollPhysics(),
-                          addAutomaticKeepAlives: true,
-                          shrinkWrap: true,
-                          crossAxisCount: 3,
-                          mainAxisSpacing: 4,
-                          crossAxisSpacing: 4,
-                          itemBuilder: (context, index) {
-                            // print(index);
-                            // print(controller.products[index]['thumbnail']);
-                            // var allProducts = controller.products[index];
-                            // return const Column(
-                            //   children: [
-                            //     Text('index : '),
-                            //     // Text('controller.products is  : ${controller.products}')
-                            //   ],
-                            // );
-                            return Tile(
-                              title: controller.products[index]['title'],
-                              price: controller.products[index]['price'],
-                              category: controller.products[index]['category'],
-                              thumbnail: controller.products[index]
-                                  ['thumbnail'],
-                              index: index,
-                              extent: (index % 2 + 4) * 60,
-                            );
-                          },
-                        );
+                        return (controller.products.isEmpty)
+                            ? const ProductsLoading()
+                            : MasonryGridView.count(
+                                itemCount: controller.products.length,
+                                physics: const NeverScrollableScrollPhysics(),
+                                addAutomaticKeepAlives: true,
+                                shrinkWrap: true,
+                                crossAxisCount: 3,
+                                mainAxisSpacing: 4,
+                                crossAxisSpacing: 4,
+                                itemBuilder: (context, index) {
+                                  return Tile(
+                                    prod: controller.products[index],
+                                    title: controller.products[index]['title'],
+                                    price: controller.products[index]['price'],
+                                    category: controller.products[index]
+                                        ['category'],
+                                    thumbnail: controller.products[index]
+                                        ['thumbnail'],
+                                    index: index,
+                                    extent: (index % 2 + 4) * 60,
+                                  );
+                                },
+                              );
                       }),
                 ],
               ),

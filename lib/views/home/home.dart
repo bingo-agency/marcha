@@ -20,7 +20,6 @@ class HomeScreen extends StatelessWidget {
     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
     ScrollController scrollController = ScrollController();
     return Scaffold(
-      // drawer: const MyDrawer(),
       body: CustomScrollView(
         controller: scrollController,
         slivers: <Widget>[
@@ -29,68 +28,20 @@ class HomeScreen extends StatelessWidget {
             expandedHeight: 220.0,
             flexibleSpace: const FlexibleSpaceBar(
               background: ImageSlider(),
-
-              //     Image(
-              //   fit: BoxFit.cover,
-              //   alignment: Alignment.topLeft,
-              //   image: AssetImage(
-              //     "assets/images/HeroSection.png",
-              //   ),
-              // ),
             ),
             pinned: true,
             snap: true,
             floating: true,
             centerTitle: false,
-            // actions: [
-            //   InkWell(
-            //     onTap: () {
-            //       //check logged in user.
-            //     },
-            //     child: Padding(
-            //       padding: const EdgeInsets.only(right: 8.0),
-            //       child: CircleAvatar(
-            //         radius: 30.0,
-            //         backgroundColor: Theme.of(context).primaryColor,
-            //         child: Icon(
-            //           FeatherIcons.user,
-            //           size: 20.0,
-            //           color: Theme.of(context).backgroundColor,
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // ],
             toolbarHeight: 115.0,
-            // leading: GestureDetector(
-            //   onTap: () {
-            //     //check logged in user.
-            //   },
-            //   child: Padding(
-            //     padding: const EdgeInsets.only(left: 8.0),
-            //     child: CircleAvatar(
-            //       radius: 30.0,
-            //       backgroundColor: const Color.fromARGB(153, 139, 195, 74),
-            //       child: Icon(
-            //         FeatherIcons.alignLeft,
-            //         size: 20.0,
-            //         weight: 100.0,
-            //         color: Theme.of(context).backgroundColor,
-            //       ),
-            //     ),
-            //   ),
-            // ),
             bottom: customAppBar(context),
           ),
           //3
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (_, int index) {
-                // scrollController: scrollController,
-                // controller: scrollController,
                 return const Column(
                   children: [
-                    // ImageSlider(),
                     CategoriesRow(),
                     RecentProducts(),
                     City(),
