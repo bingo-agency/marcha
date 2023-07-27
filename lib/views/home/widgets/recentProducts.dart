@@ -1,14 +1,16 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:marcha/views/listing/listing.dart';
+import 'package:marcha/views/listing/productListing.dart';
 import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:marcha/views/listing/listingDetail.dart';
+import 'package:marcha/views/listing/productDetail.dart';
+import 'package:marcha/views/listing/productTile.dart';
 import 'package:marcha/views/widgets/productsLoading.dart';
 import '../../../state/DataBase.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class RecentProducts extends StatelessWidget {
   const RecentProducts({super.key});
@@ -37,7 +39,7 @@ class RecentProducts extends StatelessWidget {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (BuildContext context) =>
-                            const Listing(curl: '*'),
+                            const ProductListing(curl: '*'),
                       ),
                     );
                   },
@@ -65,11 +67,10 @@ class RecentProducts extends StatelessWidget {
                     addAutomaticKeepAlives: true,
                     shrinkWrap: true,
                     crossAxisCount: 3,
-                    mainAxisSpacing: 4,
-                    crossAxisSpacing: 4,
+                    mainAxisSpacing: 5,
+                    crossAxisSpacing: 5,
                     itemBuilder: (context, index) {
-                      // return Text(controller.products[index]['price']);
-                      return Tile(
+                      return ProductTile(
                         prod: controller.products[index],
                         title: controller.products[index]['title'],
                         price: controller.products[index]['price'],
@@ -83,123 +84,6 @@ class RecentProducts extends StatelessWidget {
                 }
               }),
         ],
-      ),
-    );
-  }
-}
-
-// productCard() {
-//   return Container(
-//     decoration: const BoxDecoration(
-//       color: Colors.grey,
-//       borderRadius: BorderRadius.only(topRight: Radius.circular(25.0)),
-//     ),
-//   );
-// }
-
-class Tile extends StatelessWidget {
-  final Map<String, dynamic> prod;
-  final int index;
-  final double extent;
-  final String title;
-  final String price;
-  final String category;
-  final String thumbnail;
-  const Tile({
-    Key? key,
-    required this.prod,
-    required this.index,
-    required this.extent,
-    required this.title,
-    required this.price,
-    required this.category,
-    required this.thumbnail,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 5.0,
-      child: InkWell(
-        onTap: () {
-          print(index.toString());
-          Get.to(
-            ListingDetailPage(
-              map: prod,
-            ),
-          );
-        },
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.grey[300],
-            borderRadius: BorderRadius.circular(8),
-          ),
-          height: extent,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                CachedNetworkImage(
-                  imageUrl: thumbnail.toString(),
-                  fit: BoxFit.cover,
-                ),
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    color: Colors.white54,
-                    padding: const EdgeInsets.all(10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                title,
-                                style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.bold,
-                                    color:
-                                        Theme.of(context).secondaryHeaderColor),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                category,
-                                style: TextStyle(
-                                    fontSize: 10.0,
-                                    fontWeight: FontWeight.bold,
-                                    color:
-                                        Theme.of(context).secondaryHeaderColor),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(7.0),
-                            child: Text(
-                              price.toString(),
-                              style: TextStyle(
-                                  // fontSize: 13.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).primaryColor),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
       ),
     );
   }

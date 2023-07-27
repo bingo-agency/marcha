@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:marcha/helper/imageList.dart';
+import 'package:marcha/views/listing/productTile.dart';
 import 'package:marcha/views/widgets/productsLoading.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:get/get.dart';
@@ -12,9 +13,9 @@ import '../../../models/product.dart';
 import '../../../state/DataBase.dart';
 import '../home/widgets/recentProducts.dart';
 
-class Listing extends StatelessWidget {
+class ProductListing extends StatelessWidget {
   final String curl;
-  const Listing({required this.curl, super.key});
+  const ProductListing({required this.curl, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +71,7 @@ class Listing extends StatelessWidget {
                                 mainAxisSpacing: 4,
                                 crossAxisSpacing: 4,
                                 itemBuilder: (context, index) {
-                                  return Tile(
+                                  return ProductTile(
                                     prod: controller.products[index],
                                     title: controller.products[index]['title'],
                                     price: controller.products[index]['price'],

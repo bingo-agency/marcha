@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:marcha/state/DataBase.dart';
 import 'package:get/get.dart';
+import 'package:marcha/views/categories/categories.dart';
+import 'package:marcha/views/categories/categoryDetail.dart';
+import 'package:marcha/views/listing/productListing.dart';
 import 'package:marcha/views/widgets/categoriesLoading.dart';
 
 import '../../../helper/categoriesHelper.dart';
@@ -31,6 +34,11 @@ class CategoriesRow extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     print('View all categories.Expanded list.');
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => const Categories(),
+                      ),
+                    );
                   },
                   child: Text(
                     'View All',
@@ -54,9 +62,9 @@ class CategoriesRow extends StatelessWidget {
                       : ListView.builder(
                           itemCount: controller.categories.length,
                           itemBuilder: (context, index) {
-                            Map<String, dynamic> singleCat = CategoriesHelper
-                                .categories['categories'][index];
-                            return categoryCard(singleCat);
+                            Map<String, dynamic> singleCat =
+                                controller.categories[index];
+                            return categoryCard(singleCat, context);
                           },
                           scrollDirection: Axis.horizontal,
                         );
@@ -68,7 +76,7 @@ class CategoriesRow extends StatelessWidget {
   }
 }
 
-categoryCard(index) {
+categoryCard(index, context) {
   return Stack(
     children: [
       Container(
@@ -88,11 +96,22 @@ categoryCard(index) {
         width: 100,
         height: 100,
       ),
-      CachedNetworkImage(
-        imageUrl: index['imageUrl'],
-        fit: BoxFit.cover,
-        width: 100,
-        height: 100,
+      InkWell(
+        onTap: () {
+          Get.to(CategoryDetail(category: index));
+          // Navigator.of(context).push(
+          //   MaterialPageRoute(
+          //     builder: (BuildContext context) =>
+          //         const ProductListing(curl: '*'),
+          //   ),
+          // );
+        },
+        child: CachedNetworkImage(
+          imageUrl: index['imageUrl'],
+          fit: BoxFit.cover,
+          width: 100,
+          height: 100,
+        ),
       ),
     ],
   );

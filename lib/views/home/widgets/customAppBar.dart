@@ -1,4 +1,3 @@
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:marcha/views/search/filters.dart';
@@ -11,39 +10,7 @@ customAppBar(context) {
     automaticallyImplyLeading: false,
     centerTitle: false,
     backgroundColor: Colors.transparent,
-    leading: Container(
-      margin: const EdgeInsets.only(left: 5.0),
-      padding: const EdgeInsets.all(3.0),
-      child: GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            PageRouteBuilder(
-              pageBuilder: (context, animation, secondaryAnimation) {
-                return MyDrawer(
-                  animation: animation,
-                );
-              },
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) {
-                return SlideTransition(
-                  position: Tween<Offset>(
-                    begin: const Offset(-1.0, 0.0),
-                    end: Offset.zero,
-                  ).animate(animation),
-                  child: child,
-                );
-              },
-            ),
-          );
-        },
-        child: CircleAvatar(
-          backgroundColor: Theme.of(context).primaryColor,
-          child: SvgPicture.asset('assets/icons/menu.svg',
-              color: Theme.of(context).backgroundColor),
-        ),
-      ),
-    ),
+    // leading: ,
     title: Card(
       margin: const EdgeInsets.all(0.0),
       clipBehavior: Clip.hardEdge,
@@ -95,7 +62,10 @@ customAppBar(context) {
                 )
               ],
             ),
-            trailing: ElevatedButton(
+            trailing: IconButton(
+                style: IconButton.styleFrom(
+                    backgroundColor: Theme.of(context).primaryColor),
+                color: Theme.of(context).backgroundColor,
                 onPressed: () {
                   print('Filters were tapped. !!!');
                   Navigator.of(context).push(
@@ -104,7 +74,7 @@ customAppBar(context) {
                     ),
                   );
                 },
-                child: const Icon(FeatherIcons.sliders)),
+                icon: const Icon(FeatherIcons.sliders)),
           ),
         ),
       ),

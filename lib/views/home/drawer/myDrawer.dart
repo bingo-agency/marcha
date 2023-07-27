@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:marcha/state/DataBase.dart';
+import 'package:get/get.dart';
 
 class MyDrawer extends StatelessWidget {
   final Animation<double> animation;
@@ -18,12 +20,25 @@ class MyDrawer extends StatelessWidget {
               print('Settings tapped.');
             },
           ),
-          IconButton(
-            icon: const Icon(FeatherIcons.activity),
-            onPressed: () {
-              print('Activity tapped.');
-            },
-          ),
+          // GetBuilder<DataBase>(
+          //   init: DataBase(),
+          //   builder: (controller) {
+          //     return Obx(
+          //       () => IconButton(
+          //         icon: controller.isDarkMode
+          //             ? const Icon(FeatherIcons.eyeOff)
+          //             : const Icon(FeatherIcons.eye),
+          //         onPressed: () {
+          //           if (controller.isDarkMode) {
+          //             controller.toggleDarkMode();
+          //           } else {
+          //             controller.toggleDarkMode();
+          //           }
+          //         },
+          //       ),
+          //     );
+          //   },
+          // ),
         ],
       ),
       body: Column(

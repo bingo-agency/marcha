@@ -14,8 +14,10 @@ class LandingPage extends StatelessWidget {
       fontWeight: FontWeight.w500,
       fontSize: 12);
 
-  final TextStyle selectedLabelStyle =
-      TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12);
+  final TextStyle selectedLabelStyle = const TextStyle(
+      color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12);
+
+  LandingPage({super.key});
 
   buildBottomNavigationMenu(context, landingPageController) {
     return Obx(() => MediaQuery(

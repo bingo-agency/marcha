@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>35040681850-u413qnj9cl29kborf7rt83r14dqf4u8r.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.35040681850-u413qnj9cl29kborf7rt83r14dqf4u8r</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAZZbmR0AxN1ZDjdhXibHJZ3zGPFJh-ohQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>35040681850</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.marcha</string>
+	<key>PROJECT_ID</key>
+	<string>marcha-f5745</string>
+	<key>STORAGE_BUCKET</key>
+	<string>marcha-f5745.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:35040681850:ios:2ec8714765e999b72000c3</string>
+	<key>DATABASE_URL</key>
+	<string>https://marcha-f5745-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

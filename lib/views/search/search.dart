@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marcha/views/home/widgets/customAppBar.dart';
 
 import '../../helper/noRecordsFound.dart';
 
@@ -9,10 +10,16 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Show searchbar'),
+        title: customAppBar(context),
       ),
-      body: Center(
-        child: noRecordsFound(context, 'No Search records saved.'),
+      body: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [noRecordsFound(context, 'No Search records saved.')],
+        ),
       ),
     );
   }
